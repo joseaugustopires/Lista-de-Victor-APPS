@@ -1,0 +1,126 @@
+:root {
+  --bg-black: #000000;
+  --bg-dark: #121212;
+  --bg-elevated: #282828;
+  --text-primary: #ffffff;
+  --text-secondary: #b3b3b3;
+  --spotify-green: #1db954;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-black);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.app-container { display: flex; height: 100vh; flex-direction: column; }
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 240px;
+  background-color: var(--bg-black);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 15px;
+  position: fixed; top: 0; bottom: 90px; left: 0;
+}
+.logo { font-size: 24px; font-weight: bold; margin-bottom: 20px; color: white; }
+
+.nav-item {
+  background: none; border: none;
+  color: var(--text-secondary); font-size: 16px; font-weight: bold;
+  text-align: left; cursor: pointer; padding: 10px 0;
+  display: flex; align-items: center; gap: 10px; transition: 0.3s;
+}
+.nav-item:hover, .nav-item.active { color: var(--text-primary); }
+
+.nav-section { margin-top: 20px; border-top: 1px solid #282828; padding-top: 20px; }
+.action-btn { opacity: 0.8; }
+.action-btn:hover { opacity: 1; }
+
+/* --- PLAYLISTS (Componente) --- */
+.playlists-list { margin-top: 20px; overflow-y: auto; flex: 1; }
+.playlist-label { font-size: 12px; letter-spacing: 2px; margin-bottom: 12px; color: var(--text-secondary); }
+.playlist-item { padding: 8px 0; color: var(--text-secondary); cursor: pointer; font-size: 14px; }
+.playlist-item:hover { color: white; }
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  margin-left: 240px; flex: 1;
+  background: linear-gradient(180deg, #404040 0%, var(--bg-dark) 40%);
+  overflow-y: auto; padding-bottom: 100px; height: 100vh;
+}
+
+/* --- HEADER (Componente) --- */
+.playlist-header { display: flex; align-items: end; gap: 24px; padding: 60px 32px 24px; }
+.header-cover { width: 190px; height: 190px; box-shadow: 0 4px 60px rgba(0,0,0,0.5); }
+.playlist-info p { font-size: 14px; font-weight: bold; margin-bottom: 8px; }
+.playlist-info h1 { font-size: 72px; font-weight: 900; margin: 0 0 10px 0; line-height: 1; }
+
+/* --- LISTA MUSICAS (Componente) --- */
+.song-list-container { padding: 20px 0; background-color: rgba(0,0,0,0.2); min-height: 500px; }
+
+/* Busca */
+.search-bar-container {
+  margin: 0 32px 20px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 10px;
+  width: 320px;
+}
+.search-input { border: none; outline: none; width: 100%; font-size: 14px; color: #000; }
+
+.list-header {
+  display: grid; grid-template-columns: 40px 4fr 3fr 1fr 40px;
+  padding: 10px 32px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 10px; color: var(--text-secondary); font-size: 13px; text-transform: uppercase;
+}
+
+.song-row {
+  display: grid; grid-template-columns: 40px 4fr 3fr 1fr 40px;
+  align-items: center; padding: 10px 16px; margin: 0 16px;
+  border-radius: 4px; cursor: pointer; color: var(--text-secondary);
+}
+.song-row:hover { background-color: rgba(255,255,255,0.1); color: white; }
+.active-song { color: var(--spotify-green); }
+
+.song-title-col { display: flex; align-items: center; gap: 12px; }
+.song-title-col img { width: 40px; height: 40px; }
+.song-name { color: var(--text-primary); font-size: 16px; font-weight: 500; }
+.song-artist { font-size: 14px; }
+
+.heart-btn { font-size: 18px; cursor: pointer; display: flex; justify-content: center; }
+.heart-btn:hover { transform: scale(1.1); }
+
+/* --- PLAYER (Componente) --- */
+.player-footer {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 90px; background-color: #181818; border-top: 1px solid #282828;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 16px; z-index: 100;
+}
+
+.footer-left { display: flex; align-items: center; gap: 14px; width: 30%; }
+.footer-left img { width: 56px; height: 56px; }
+
+.footer-center { width: 40%; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.controls { display: flex; align-items: center; gap: 20px; }
+.control-btn { background: none; border: none; font-size: 24px; cursor: pointer; opacity: 0.7; }
+.control-btn:hover { opacity: 1; }
+
+.play-button {
+  background-color: white; border: none; border-radius: 50%;
+  width: 32px; height: 32px; cursor: pointer;
+  display: flex; justify-content: center; align-items: center; font-size: 14px;
+}
+.play-button:hover { transform: scale(1.05); }
+
+.progress-bar-container { display: flex; align-items: center; width: 100%; gap: 10px; font-size: 11px; color: var(--text-secondary); }
+.progress-bar { flex: 1; height: 4px; background-color: #535353; border-radius: 2px; }
+.progress-fill { height: 100%; background-color: var(--text-primary); border-radius: 2px; transition: width 1s linear; }
+
+.footer-right { width: 30%; display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+.volume-slider { width: 100px; accent-color: var(--spotify-green); }
